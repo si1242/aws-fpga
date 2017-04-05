@@ -40,6 +40,9 @@ nohup.out
 # Shell DCP files are stored in S3 and downloaded by hdk_setup.sh
 hdk/common/shell_*/build/checkpoints/from_aws/SH_CL_BB_routed.dcp*
 
+#DSA
+sdk/SDAccel/platforms/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/hw/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa*
+
 # Generated checkpoints
 checkpoints
 
