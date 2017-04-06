@@ -16,7 +16,7 @@ The instructions below describe how to get started on SDAccel development using 
     $ make TARGETS=sw_emu DEVICES="xilinx:minotaur-vu9p-f1:4ddr-xpr:3.3" all       # Compile using xocc.  "hw_emu" is another option
     $ ./hello xclbin/krnl_hello.sw_emu.xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.xclbin # Run using sw emulation
 
-## AWS EC2 SDAccel Example SW Emulation
+## AWS EC2 SDAccel Example HW Emulation
 
 The instructions below describe how to get started on SDAccel development using the HW Emulation.  HW emulation is used to create custom hardware and review the performance of the kernel.
 
