@@ -2,7 +2,7 @@
 # AWS EC2 SDAccel Example Quickstart
 
 
-SW/HW Emulation is supported and F1 FPGA HW build support will be aviable soon.  
+SW/HW Emulation is supported and F1 FPGA HW build support will be available soon.  
 
 ## AWS EC2 SDAccel Example SW Emulation
 
