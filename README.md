@@ -49,11 +49,14 @@ The [SDK directory](./sdk) includes the runtime environment required to run on E
 [AFI Management Tools](./sdk/userspace/fpga_mgmt_tools/README.md)
 
 <a name="fpgasdaccel"></a>
-## SDAccel - Coming Soon
+## SDAccel
 
-The [SDAccel directory](./sdaccel) includes the environment required to run OpenCL/SDAccel flow on EC2 instances. It includes the drivers and tools to interact with AFIs that are loaded to EC2 FPGA instance slots. 
+The [SDAccel directory](./sdaccel) includes the environment required to run OpenCL/SDAccel flow on EC2 instances. It includes the drivers and tools to interact with AFIs that are loaded to EC2 FPGA instance slots.  In addition, HW/SW emulation examples aviable to help quick start SDAccel development.  To get started:  $source sdk_setup.sh
 
 [Developing with OpenCL/SDAccel](./hdk/docs/OpenCL_SDAccel_Development.md)
+
+[SDAccel examples quickstart](./sdk/SDAccel/examples/README.md)
+
 
 <a name="devAmi"></a>
 ## FPGA Developer AMI 
