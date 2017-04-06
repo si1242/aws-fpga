@@ -5,6 +5,7 @@
 1. [AWS EC2 FPGA Hardware and Software Development Kits](#devkit)
     - [FPGA Hardware Development Kit (HDK)](#fpgahdk)
     - [FPGA Software Development Kit (SDK)](#fpgasdk)
+    - [OpenCL and SDAccel Development Kit](#fpgasdaccel)
     - [FPGA Developer AMI available on AWS Marketplace](#devAmi)
     - [Developer Support](#devSupport)
 2. [Building an example AFI](#buildingAnExample)
@@ -28,7 +29,7 @@ Please click the "Watch" button in GitHub upper right corner to stay posted.
 <a name="fpgahdk"></a>
 ## FPGA HDK 
 
-The [HDK directory](./hdk) contains usuful information and scripts for developers wanting to start building Amazon FPGA Images (AFI).  It includes the development environment, simulation, build and AFI creation scripts.  The HDK can be installed on any on-premises server or an EC2 instance. The HDK is not required if you are using a pre-built AFI and not planning to build your own AFI. The following resources provide further details:
+The [HDK directory](./hdk) contains usuful information and scripts for developers wanting to start building Amazon FPGA Images (AFI) via RTL flow (Verilog, VHDL).  It includes the development environment, simulation, build and AFI creation scripts.  The HDK can be installed on any on-premises server or an EC2 instance. The HDK is not required if you are using a pre-built AFI and not planning to build your own AFI. The following resources provide further details:
 
 [HDK README](./hdk/README.md)
         
@@ -48,10 +49,11 @@ The [SDK directory](./sdk) includes the runtime environment required to run on E
 
 [AFI Management Tools](./sdk/userspace/fpga_mgmt_tools/README.md)
 
+
 <a name="fpgasdaccel"></a>
 ## SDAccel
 
-The [SDAccel directory](./sdaccel) includes the environment required to run OpenCL/SDAccel flow on EC2 instances. It includes the drivers and tools to interact with AFIs that are loaded to EC2 FPGA instance slots.  In addition, HW/SW emulation examples aviable to help quick start SDAccel development.  To get started:  `source sdk_setup.sh` and start on the examples quickstart.
+The [SDAccel directory](./sdaccel) includes the environment required for both build flow and runtime code for OpenCL/SDAccel flow on EC2 instances. For runtime, it includes the OpenCL driver and SDAccel runtime library for use on EC2 F1 instance with AFI built by SDAccel/OpenCL.  For build, it includes the hardare/software emulation examples available to help quick start SDAccel development.  To get started:  `source sdk_setup.sh` and start on the examples quickstart.
 
 [Developing with OpenCL/SDAccel](./hdk/docs/OpenCL_SDAccel_Development.md)
 
