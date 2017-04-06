@@ -88,6 +88,16 @@ fi
 info_msg "Setting up environment variables"
 unset SDK_DIR
 export SDK_DIR=${SDK_DIR:=$(pwd)/sdk}
+export XILINX_SDX=/opt/Xilinx/SDx/2016.4
+export LD_LIBRARY_PATH=$XILINX_SDX/runtime/lib/x86_64/:$LD_LIBRARY_PATH
+source $XILINX_SDX/settings64.sh
+if grep -q 'libxilinxopencl.so' /etc/OpenCL/vendors/xilinx.icd; then
+  echo "Found 'libxilinxopencl.so"
+else
+  err_msg "Failed find to libxilinxopencl.so in /etc/OpenCL/vendors/xilinx.icd"
+  cat /etc/OpenCL/vendors/xilinx.icd
+  return 2
+fi
 echo "Done setting environment variables."
 
 
