@@ -51,7 +51,7 @@ The [SDK directory](./sdk) includes the runtime environment required to run on E
 <a name="fpgasdaccel"></a>
 ## SDAccel
 
-The [SDAccel directory](./sdaccel) includes the environment required to run OpenCL/SDAccel flow on EC2 instances. It includes the drivers and tools to interact with AFIs that are loaded to EC2 FPGA instance slots.  In addition, HW/SW emulation examples aviable to help quick start SDAccel development.  To get started:  $source sdk_setup.sh
+The [SDAccel directory](./sdaccel) includes the environment required to run OpenCL/SDAccel flow on EC2 instances. It includes the drivers and tools to interact with AFIs that are loaded to EC2 FPGA instance slots.  In addition, HW/SW emulation examples aviable to help quick start SDAccel development.  To get started:  `$source sdk_setup.sh` and start on the examples quickstart.
 
 [Developing with OpenCL/SDAccel](./hdk/docs/OpenCL_SDAccel_Development.md)
 
