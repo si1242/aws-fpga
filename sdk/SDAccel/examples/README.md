@@ -6,7 +6,7 @@ SW/HW Emulation is supported and F1 FPGA HW build support will be available soon
 
 ## AWS EC2 SDAccel Example SW Emulation
 
-The instructions below describe how to get started on SDAccel development using the SW Emulation.  SW Emulation is used to confirm functionality of your host/kernel code.  
+The instructions below describe how to get started on SDAccel development using the SW Emulation.  The main goal of SW emulation is to ensure functional correctness and to partition the application into kernels.  For CPU-based (SW) emulation, both the host code and the kernel code are compiled to run on an x86 processor. The programmer model of iterative algorithm refinement through fast compile and run loops is preserved with speeds that are the same as a CPU compile and run cycle. 
 
 
     $ export XCL_EMULATION_MODE=true                                               # Enable emulation mode
@@ -18,7 +18,7 @@ The instructions below describe how to get started on SDAccel development using 
 
 ## AWS EC2 SDAccel Example HW Emulation
 
-The instructions below describe how to get started on SDAccel development using the HW Emulation.  HW emulation is used to create custom hardware and review the performance of the kernel.
+The instructions below describe how to get started on SDAccel development using the HW Emulation.  The hardware emulation flow, which enables the programmer to check the correctness of the logic generated for the custom compute units. This emulation flow invokes the hardware simulator in the SDAccel environment to test the functionality of the logic that will be executed on the FPGA compute fabric.
 
 
     $ export XCL_EMULATION_MODE=true                                               # Enable emulation mode
