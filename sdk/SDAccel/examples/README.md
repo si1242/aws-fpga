@@ -1,9 +1,10 @@
 
-# AWS EC2 SDAccel Example Quickstart
+# AWS EC2 SDAccel Quickstart
 
 
-SW/HW Emulation is supported.
-Build flow targeting the F1 FPGA fabric is coming soon.  
+SW/HW Emulation is now supported.  The quickstart examples require Xilinx 2016.4 SDx tool set, which are included in the [developer AMI](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ)
+
+The SDAccel build flow targeting the F1 FPGA fabric is coming soon.
 
 ## AWS EC2 SDAccel Example SW Emulation
 
