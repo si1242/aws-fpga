@@ -8,6 +8,8 @@ The quickstart examples require Xilinx 2016.4 SDx tool set, which are included i
 
 The SDAccel build flow targeting F1 FPGA is coming soon.
 
+**NOTE:** The next set of instructions assumes the developer already cloned AWS FPGA HDK+SDK from github, and have sourced `sdk_setup.sh`.
+
 ## AWS EC2 SDAccel Example Software (SW) Emulation
 
 The main goal of SW emulation is to ensure functional correctness and to partition the application into kernels vs host.  For CPU-based (SW) emulation, both the host code and the kernel(s) code are compiled to run on an x86 processor. The SW Emulation enables developer to iterate and refine the algorithms through fast compile, and iteration time is similar to software compile and run cycle on CPU. 
