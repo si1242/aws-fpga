@@ -16,7 +16,7 @@ The main goal of SW emulation is to ensure functional correctness and to partiti
 
 ```
     $ export XCL_EMULATION_MODE=true                                               # Enable emulation mode
-    $ cd xilinx/getting_started/basic/hello/                                       # Start using an SDAccel example
+    $ cd $SDK_DIR/SDAccel/examples/xilinx/getting_started/basic/hello/             # Start using an SDAccel example
     $ make clean                                                                   # clean up before you start
     $ emconfigutil -f $SDK_DIR/SDAccel/platforms/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/hw/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa --nd 1                                                                 # Create emulation config file
     $ make TARGETS=sw_emu DEVICES="xilinx:minotaur-vu9p-f1:4ddr-xpr:3.3" all       # Compile using xocc.  "hw_emu" is another option
@@ -31,7 +31,7 @@ The instructions below describe how to get started on SDAccel development using 
 
 ```
     $ export XCL_EMULATION_MODE=true                                               # Enable emulation mode
-    $ cd xilinx/getting_started/basic/hello/                                       # Start using an SDAccel example
+    $ cd $SDK_DIR/SDAccel/examples/xilinx/getting_started/basic/hello/             # Start using an SDAccel example
     $ make clean                                                                   # clean up before you start
     $ emconfigutil -f $SDK_DIR/SDAccel/platforms/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/hw/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa --nd 1                                                                 # Create emulation config file
     $ make TARGETS=hw_emu DEVICES="xilinx:minotaur-vu9p-f1:4ddr-xpr:3.3" all       # Compile using xocc.  "hw_emu" is another option
