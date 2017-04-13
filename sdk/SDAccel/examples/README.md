@@ -1,14 +1,22 @@
 
 # AWS EC2 SDAccel Quickstart
 
-
 Both Software(SW) and Hardware(HW) Emulation modes in SDAccel are now supported.  
 
-The quickstart examples require Xilinx 2016.4 SDx tool set, which are included in the [AWS FPGA Developer AMI available from AWS Marketplace](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ)
+The quickstart examples require Xilinx 2016.4 SDx tool set, which are included in the [AWS FPGA Developer AMI available from AWS Marketplace](https://aws.amazon.com/marketplace/pp/B06VVYBLZZ).  
 
 The SDAccel build flow targeting F1 FPGA is coming soon.
 
-**NOTE:** The next set of instructions assumes the developer already cloned AWS FPGA HDK+SDK from github, and have sourced `sdk_setup.sh`.
+## Get Started on Early Preview of SDAccel
+
+```
+    $ git clone git@github.com:aws/aws-fpga.git $AWS_FPGA_REPO_DIR  # Clone Repo (if you haven't already)
+    $ cd $AWS_FPGA_REPO_DIR                                         
+    $ git checkout kristopk_prelease_sdaccel_ea                     # checkout early access branch
+    $ git submodule update --init --recursive
+```
+
+**NOTE:** The next set of instructions assumes the developer already cloned AWS FPGA HDK+SDK from github, and have sourced `sdk_setup.sh`
 
 ## AWS EC2 SDAccel Example Software (SW) Emulation
 
