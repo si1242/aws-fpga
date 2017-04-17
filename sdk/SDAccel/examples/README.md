@@ -12,18 +12,16 @@ The SDAccel build flow targeting F1 FPGA is coming soon.
 ```
     $ git clone git@github.com:aws/aws-fpga.git $AWS_FPGA_REPO_DIR  # Clone Repo (if you haven't already)
     $ cd $AWS_FPGA_REPO_DIR                                         
-    $ git checkout kristopk_prelease_sdaccel_ea                     # checkout early access branch
-    $ git submodule update --init --recursive
+    $ git checkout kristopk_preview                     # checkout early access branch
+    $ source sdk_setup.sh
+    $ cd sdk/SDAccel
+    $ source sdaccel_setup.sh
 ```
-
-**NOTE:** The next set of instructions assumes the developer already cloned AWS FPGA HDK+SDK from github, and have sourced `sdk_setup.sh`
-
 ## AWS EC2 SDAccel Example Software (SW) Emulation
 
 The main goal of SW emulation is to ensure functional correctness and to partition the application into kernels vs host.  For CPU-based (SW) emulation, both the host code and the kernel(s) code are compiled to run on an x86 processor. The SW Emulation enables developer to iterate and refine the algorithms through fast compile, and iteration time is similar to software compile and run cycle on CPU. 
 
 ```
-    $ export XCL_EMULATION_MODE=true                                               # Enable emulation mode
     $ cd $SDK_DIR/SDAccel/examples/xilinx/getting_started/basic/hello/             # Start using an SDAccel example
     $ make clean                                                                   # clean up before you start
     $ emconfigutil -f $SDK_DIR/SDAccel/platforms/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/hw/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa --nd 1                                                                 # Create emulation config file
@@ -38,7 +36,6 @@ The SDAccel hardware emulation flow enables the developer to check the correctne
 The instructions below describe how to get started on SDAccel development using the HW Emulation: 
 
 ```
-    $ export XCL_EMULATION_MODE=true                                               # Enable emulation mode
     $ cd $SDK_DIR/SDAccel/examples/xilinx/getting_started/basic/hello/             # Start using an SDAccel example
     $ make clean                                                                   # clean up before you start
     $ emconfigutil -f $SDK_DIR/SDAccel/platforms/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/hw/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa --nd 1                                                                 # Create emulation config file
