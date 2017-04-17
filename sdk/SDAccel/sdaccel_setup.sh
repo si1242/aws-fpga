@@ -108,7 +108,7 @@ echo "Done setting environment variables."
 dsa_dir=$SDK_DIR/SDAccel/platforms/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/hw/
 sdk_dsa=$dsa_dir/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa
 sdk_dsa_s3_bucket=aws-fpga-hdk-resources
-s3_sdk_dsa=$sdk_dsa_s3_bucket/sdk/SDAccel/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa
+s3_sdk_dsa=$sdk_dsa_s3_bucket/sdk/SDAccel/v1_2_0/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3/xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3.dsa
 # Download the sha256
 if [ ! -e $dsa_dir ]; then
 	mkdir -p $dsa_dir || { err_msg "Failed to create $dsa_dir"; return 2; }
@@ -148,5 +148,6 @@ if [[ $act_sha256 != $exp_sha256 ]]; then
   err_msg "  There may be an issue with the uploaded checkpoint or the download failed."
   return 2
 fi
+sudo cp -r $dsa_dir/..//xilinx_minotaur-vu9p-f1_4ddr-xpr_3_3 $XILINX_SDX/platforms/
 info_msg "SDK DSA is up-to-date"
 
