@@ -86,7 +86,6 @@ else
 fi
 
 info_msg "Setting up environment variables"
-git submodule update --init --recursive
 module unload
 module load sdx
 export XILINX_SDX=/opt/Xilinx/SDx/2016.4
