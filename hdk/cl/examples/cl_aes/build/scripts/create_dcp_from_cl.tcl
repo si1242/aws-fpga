@@ -15,7 +15,7 @@
 
 package require tar
 
-set TOP cl_hello_world 
+set TOP aes_256
 
 #################################################
 ## Command-line Arguments
@@ -131,14 +131,14 @@ if {[string compare $notify_via_sns "1"] == 0} {
 source encrypt.tcl
 
 ##################################################
-### Tcl Procs and Params 
+### Tcl Procs and Params
 ##################################################
 
 if {[string match "2017.1*" [version -short]]} {
    ####Turn off power opt in opt_design for improved QoR
    set_param logicopt.enablePowerLopt false
 
-   ####Forcing global router ON for improved QoR 
+   ####Forcing global router ON for improved QoR
    set_param route.gr.minGRCongLevel 0
    set_param route.gr.minNumNets     1
 
@@ -161,7 +161,7 @@ create_project -in_memory -part [DEVICE_TYPE] -force
 set_param chipscope.enablePRFlow true
 
 ########################################
-## Generate clocks based on Recipe 
+## Generate clocks based on Recipe
 ########################################
 
 puts "AWS FPGA: ([clock format [clock seconds] -format %T]) Calling aws_gen_clk_constraints.tcl to generate clock constraints from developer's specified recipe.";
@@ -182,7 +182,7 @@ puts "AWS FPGA: ([clock format [clock seconds] -format %T]) Reading developer's 
 # Reading the .sv and .v files, as proper designs would not require
 # reading .v, .vh, nor .inc files
 
-read_verilog -sv  [glob $ENC_SRC_DIR/*.?v] 
+read_verilog -sv  [glob $ENC_SRC_DIR/*.?v]
 
 #---- End of section replaced by User ----
 
@@ -245,7 +245,7 @@ switch $strategy {
     }
     "TIMING" {
         puts "TIMING strategy."
-        synth_design -top $TOP -verilog_define XSDB_SLV_DIS -part [DEVICE_TYPE] -mode out_of_context -no_lc -shreg_min_size 5 -fsm_extraction one_hot -resource_sharing off 
+        synth_design -top $TOP -verilog_define XSDB_SLV_DIS -part [DEVICE_TYPE] -mode out_of_context -no_lc -shreg_min_size 5 -fsm_extraction one_hot -resource_sharing off
     }
     "CONGESTION" {
         puts "CONGESTION strategy."
@@ -535,4 +535,3 @@ if {[string compare $notify_via_sns "1"] == 0} {
   puts "AWS FPGA: ([clock format [clock seconds] -format %T]) Calling notification script to send e-mail to $env(EMAIL)";
   exec $env(HDK_COMMON_DIR)/scripts/notify_via_sns.py
 }
-
