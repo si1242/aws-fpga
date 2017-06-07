@@ -47,6 +47,7 @@ logic rst_main_n_sync;
     logic [15:0] sh_cl_status_vdip_q;
     logic [15:0] sh_cl_status_vdip_q2;
     logic [31:0] hello_world_q;
+    logic [127:0] result;    
 
   //-------------------------------------------------
   // ID Values (cl_hello_world_defines.vh)
@@ -166,7 +167,7 @@ logic rst_main_n_sync;
      logic        rvalid;
      logic [31:0] rdata;
      logic [1:0]  rresp;
-     logic [127:0] result;
+
 
      // Inputs
      assign awvalid         = sh_ocl_awvalid_q;
@@ -204,10 +205,10 @@ logic rst_main_n_sync;
                                                       wr_active;
 
        /*(wr_active&&bvalid&&bready)が１ならwr_acrive<=0*/
-       /*0な�?(~wr_active && awvalid)を比�?して?��な�? wr_active<=1*/
+       /*0な��?(~wr_active && awvalid)を比��?して?��な��? wr_active<=1*/
        /*0ならwr_activeを保持*/
        wr_addr <= awvalid && ~wr_active ? awaddr : wr_addr     ;
-       /*awvalid&&~wr_active �?1ならwr_addrをawaddrへ更新*/
+       /*awvalid&&~wr_active ��?1ならwr_addrをawaddrへ更新*/
     end
 
   assign awready = ~wr_active;
