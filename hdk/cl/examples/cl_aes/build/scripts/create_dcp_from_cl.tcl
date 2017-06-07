@@ -15,7 +15,7 @@
 
 package require tar
 
-set TOP aes_256
+set TOP cl_aes
 
 #################################################
 ## Command-line Arguments

@@ -30,10 +30,13 @@ exec rm -f $TARGET_DIR/*
 #---- Developr would replace this section with design files ----
 
 ## Change file names and paths below to reflect your CL area.  DO NOT include AWS RTL files.
-file copy -force $CL_DIR/design/cl_hello_world_defines.vh             $TARGET_DIR
+file copy -force $CL_DIR/design/cl_aes_defines.vh                     $TARGET_DIR
 file copy -force $CL_DIR/design/cl_id_defines.vh                      $TARGET_DIR
-file copy -force $CL_DIR/design/cl_hello_world.sv                     $TARGET_DIR 
-file copy -force $CL_DIR/../common/design/cl_common_defines.vh        $TARGET_DIR 
+file copy -force $CL_DIR/design/cl_aes.sv                             $TARGET_DIR
+file copy -force $CL_DIR/design/aes_256.v                             $TARGET_DIR 
+file copy -force $CL_DIR/design/table.v                               $TARGET_DIR
+file copy -force $CL_DIR/design/round.v                               $TARGET_DIR
+file copy -force $CL_DIR/../common/design/cl_common_defines.vh        $TARGET_DIR
 file copy -force $UNUSED_TEMPLATES_DIR/unused_apppf_irq_template.inc  $TARGET_DIR
 file copy -force $UNUSED_TEMPLATES_DIR/unused_aurora_template.inc     $TARGET_DIR
 file copy -force $UNUSED_TEMPLATES_DIR/unused_cl_sda_template.inc     $TARGET_DIR
@@ -55,5 +58,3 @@ encrypt -k $HDK_SHELL_DIR/build/scripts/vivado_keyfile.txt -lang verilog  [glob 
 
 # encrypt *vhdl files
 encrypt -k $HDK_SHELL_DIR/build/scripts/vivado_vhdl_keyfile.txt -lang vhdl -quiet [ glob -nocomplain -- $TARGET_DIR/*.vhd? ]
-
-
