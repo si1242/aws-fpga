@@ -166,6 +166,7 @@ logic rst_main_n_sync;
      logic        rvalid;
      logic [31:0] rdata;
      logic [1:0]  rresp;
+     logic [127:0] result;
 
      // Inputs
      assign awvalid         = sh_ocl_awvalid_q;
