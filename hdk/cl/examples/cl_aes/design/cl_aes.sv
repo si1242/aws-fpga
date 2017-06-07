@@ -1,3 +1,7 @@
+  /* AES 256*/
+  `include "aes_256.v"
+  `include "round.v"
+  `include "table.v"
 module cl_aes
   (
   `include "cl_ports.vh"
@@ -5,11 +9,6 @@ module cl_aes
   `include "cl_common_defines.vh"      // CL Defines for all examples
   `include "cl_id_defines.vh"          // Defines for ID0 and ID1 (PCI ID's)
   `include "cl_aes_defines.vh"
-
-  /* AES 256*/
-  `include "aes_256.v"
-  `include "round.v"
-  `include "table.v"
 
 logic rst_main_n_sync;
 
