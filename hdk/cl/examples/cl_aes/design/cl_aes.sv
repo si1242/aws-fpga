@@ -327,4 +327,4 @@ module cl_aes
 
   assign pre_cl_sh_status_vled[15:0] = vled_q[15:0];
 
-end module
+endmodule
