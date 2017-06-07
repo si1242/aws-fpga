@@ -11,7 +11,9 @@ module cl_aes
   `include "round.v"
   `include "table.v"
 
-  //--------------------------------------------0
+logic rst_main_n_sync;
+
+  //--------------------------------------------
   // Start with Tie-Off of Unused Interfaces
   //---------------------------------------------
   // the developer should use the next set of `include
@@ -201,10 +203,10 @@ module cl_aes
                                                       wr_active;
 
        /*(wr_active&&bvalid&&bready)が１ならwr_acrive<=0*/
-       /*0なら(~wr_active && awvalid)を比較して１なら wr_active<=1*/
+       /*0な�?(~wr_active && awvalid)を比�?して?��な�? wr_active<=1*/
        /*0ならwr_activeを保持*/
        wr_addr <= awvalid && ~wr_active ? awaddr : wr_addr     ;
-       /*awvalid&&~wr_active が1ならwr_addrをawaddrへ更新*/
+       /*awvalid&&~wr_active �?1ならwr_addrをawaddrへ更新*/
     end
 
   assign awready = ~wr_active;
@@ -322,7 +324,7 @@ module cl_aes
         vled_q[15:0] <= 16'h000;
     end
     else begin
-        vled_q <= result[15:0];
+        vled_q[15:0] <= result[15:0];
     end
 
   assign pre_cl_sh_status_vled[15:0] = vled_q[15:0];
