@@ -1263,7 +1263,7 @@ if __name__ == '__main__':
     parser.add_argument('--debug', action='store_true', required=False, help='Enable debug messages')
 
     args = parser.parse_args()
-
+    
     logging_level = logging.INFO
     if (args.debug):
         logging_level = logging.DEBUG
@@ -1284,6 +1284,23 @@ if __name__ == '__main__':
         test()
         logger.info("Tests passed")
         sys.exit(0)
+    
+    # Can't make a group of args conditionally required so check for required args here
+    failed = False
+    if not args.dcp_bucket:
+        logger.error("--dcp-bucket is required")
+        failed = True
+    if not args.dcp_key:
+        logger.error("--dcp-key is required")
+        failed = True
+    if not args.logs_bucket:
+        logger.error("--logs-bucket is required")
+        failed = True
+    if not args.logs_key:
+        logger.error("--logs-key is required")
+        failed = True
+    if failed:
+        sys.exit(1)
 
     # Can't make a group of args conditionally required so check for required args here
     failed = False

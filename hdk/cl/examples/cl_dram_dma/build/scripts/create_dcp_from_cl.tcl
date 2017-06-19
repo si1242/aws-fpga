@@ -32,8 +32,7 @@ set subsystem_vendor_id [lindex $argv  7]
 set clock_recipe_a      [lindex $argv  8]
 set clock_recipe_b      [lindex $argv  9]
 set clock_recipe_c      [lindex $argv 10]
-set run_aws_emulation   [lindex $argv 11]
-set notify_via_sns      [lindex $argv 12]
+set notify_via_sns      [lindex $argv 11]
 
 ##################################################
 ### Implementation step options 
@@ -85,7 +84,6 @@ puts "PCI Subsystem Vendor ID $subsystem_vendor_id";
 puts "Clock Recipe A:         $clock_recipe_a";
 puts "Clock Recipe B:         $clock_recipe_b";
 puts "Clock Recipe C:         $clock_recipe_c";
-puts "Run AWS Emulation:      $run_aws_emulation";
 puts "Notify when done:       $notify_via_sns";
 
 #checking if CL_DIR env variable exists
@@ -240,7 +238,7 @@ puts "AWS FPGA: ([clock format [clock seconds] -format %T]) Reading developer's 
 # Reading the .sv and .v files, as proper designs would not require
 # reading .v, .vh, nor .inc files
 
-read_verilog -sv [ glob $ENC_SRC_DIR/*.?v ]
+read_verilog -sv [ glob $ENC_SRC_DIR/*.{v,sv} ]
 
 #---- End of section replaced by User ----
 
@@ -349,6 +347,10 @@ if { $failval==0 } {
 puts "AWS FPGA: ([clock format [clock seconds] -format %T]) writing post synth checkpoint.";
 
 write_checkpoint -force $CL_DIR/build/checkpoints/${timestamp}.CL.post_synth.dcp
+
+# Generate debug probes file
+write_debug_probes -force -no_partial_ltxfile -file $CL_DIR/build/checkpoints/${timestamp}.debug_probes.ltx
+
 close_project
 #Set param back to default value
 set_param sta.enableAutoGenClkNamePersistence 1
@@ -437,6 +439,11 @@ foreach uramSite $uramSites {
 # CL Place
 ########################
 puts "AWS FPGA: Place design stage";
+
+# Constraints for TCK<->Main Clock
+set_clock_groups -name tck_clk_main_a0 -asynchronous -group [get_clocks -of_objects [get_pins static_sh/SH_DEBUG_BRIDGE/inst/bsip/inst/USE_SOFTBSCAN.U_TAP_TCKBUFG/O]] -group [get_clocks -of_objects [get_pins SH/kernel_clks_i/clkwiz_sys_clk/inst/CLK_CORE_DRP_I/clk_inst/mmcme3_adv_inst/CLKOUT0]]
+set_clock_groups -name tck_drck -asynchronous -group [get_clocks -of_objects [get_pins static_sh/SH_DEBUG_BRIDGE/inst/bsip/inst/USE_SOFTBSCAN.U_TAP_TCKBUFG/O]] -group [get_clocks drck]
+set_clock_groups -name tck_userclk -asynchronous -group [get_clocks -of_objects [get_pins static_sh/SH_DEBUG_BRIDGE/inst/bsip/inst/USE_SOFTBSCAN.U_TAP_TCKBUFG/O]] -group [get_clocks -of_objects [get_pins static_sh/pcie_inst/inst/gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/bufg_gt_userclk/O]]
 
 switch $strategy {
     "BASIC" {
@@ -579,17 +586,6 @@ puts "AWS FPGA: ([clock format [clock seconds] -format %T]) writing final DCP to
 
 write_checkpoint -force $CL_DIR/build/checkpoints/to_aws/${timestamp}.SH_CL_routed.dcp
 close_project
-
-# ################################################
-# Emulate AWS Bitstream Generation
-# ################################################
-
-# Only run AWS emulation step if explicitly specified.
-
-if {[string compare $run_aws_emulation "1"] == 0} {
-  puts "AWS FPGA: ([clock format [clock seconds] -format %T]) Calling aws_dcp_verify.tcl to emulate AWS bitstream generation for checking the DCP.";
-  source $HDK_SHELL_DIR/build/scripts/aws_dcp_verify.tcl
-}
 
 # ################################################
 # Create Manifest and Tarball for delivery

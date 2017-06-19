@@ -5,8 +5,8 @@
 1. [Overview of AFI Build process](#buildoverview)
 2. [Build procedure step by step](#stepbystep)
 3. [Build strategies and parallel builds](#strategies)
-4. [About Encrption during build process](#buildencryption)
-5. [Advanced Notes](#buildadvanced notes)
+4. [About Encryption during build process](#buildencryption)
+5. [Advanced Notes](#buildadvanced_notes)
 6. [Build Frequently Asked Questions](#buildfaq)
 
 
@@ -23,7 +23,7 @@ AWS also provides an out-of-the-box generic script called `aws_build_dcp_from_cl
 
 AWS provides multiple options to generate a DCP that meets placement and timing constraints. The `aws_build_dcp_from_cl.sh` provides multiple choices for implementation strategies, invoked by the `-strategy` option. For more details refer to [Build Strategies](#strategies) below or call `aws_build_dcp_from_cl.sh -help` for the list of supported capabilities.
 
-Advanced developers can use different scripts, tools, and techniques (e.g., regioning),  with the  condition that they submit both the `manifest.txt` and "encrypted placed-and-routed design checkpoint (DCP)" in a single tar file that passes final checks. In order to reduce build time the AWS emulation step that performs these checks is disabled during the build process. In order to enable the check, a developer can set the `run_aws_emulation` argument when calling `aws_build_dcp_from_cl.sh`.
+Advanced developers can use different scripts, tools, and techniques (e.g., regioning), with the condition that they submit both the `manifest.txt` and "encrypted placed-and-routed design checkpoint (DCP)" in a single tar file that passes final checks.
 
 <a name="stepbystep"></a>
 ## Build Procedure 
@@ -61,11 +61,11 @@ The build script performs:
   
 <a name="strategies"></a>  
 #### Build Strategies   
-In order to help developers close timing goals and successfully build their designs efficiently, the build script provides the means to synthesize with different strategies. The different strategies alter the directives used by the synthesis tool. For example, some directives might specify additional optimizations to close timing, while others may specify less effort to minimize synthesis time for designs that can more easily close timing and area goals. Since every design is different, some strategies may provide better results than anothers. If a developer has trouble successfully building their design with one strategy it is encouraged that they try a different strategy, or run a few strategies in parallel using the FPGA Developer AMI. The strategies are described in more detail below.
+In order to help developers close timing goals and successfully build their designs efficiently, the build script provides the means to synthesize with different strategies. The different strategies alter the directives used by the synthesis tool. For example, some directives might specify additional optimizations to close timing, while others may specify less effort to minimize synthesis time for designs that can more easily close timing and area goals. Since every design is different, some strategies may provide better results than another build strategies. If a developer has trouble successfully building their design with one strategy it is encouraged that they try a different strategy, or run a few strategies in parallel using the FPGA Developer AMI. The strategies are described in more detail below.
 
 Build script usage:
 
-    $ ./aws_build_dcp_from_cl.sh  [-h | -H | -help] [-script <vivado_script>] [-strategy <BASIC | DEFAULT | EXPLORE | TIMING | CONGESTION>] [-clock_recipe_a A0 | A1 | A2] [-clock_recipe_b B0 | B1] [-clock_recipe_c C0 | C1] [-run_aws_emulation] [-foreground] [-notify]
+    $ ./aws_build_dcp_from_cl.sh  [-h | -H | -help] [-script <vivado_script>] [-strategy <BASIC | DEFAULT | EXPLORE | TIMING | CONGESTION>] [-clock_recipe_a A0 | A1 | A2] [-clock_recipe_b B0 | B1] [-clock_recipe_c C0 | C1] [-foreground] [-notify]
 
 Options:
 
@@ -87,9 +87,6 @@ Options:
 * -clock_recipe_c \<C0 ... Cn>
        * Use the Clock Group C clock frequencies defined for the specified Clock Group C recipe. This is an optional argument and the default value will be C0. Refer to the [Clock Group Recipes Table](./../../../../docs/clock_recipes.csv).
 
-* -run_aws_emulation
-       * Run the AWS emulation step to verify your generated DCP. The step emulates what AWS will do to generate a bitstream from the developer DCP.
-
 * -foreground
        * Run the build in the foreground such that all output will go to the terminal and the build may be terminated if the terminal is closed. This option is useful if you want to wait for the build to complete. This option is safe if the terminal is running on the AWS instance, for example on a GUI desktop on the instance.
 
@@ -99,7 +96,7 @@ Options:
 Strategy descriptions:
 
 * BASIC
-  * This is the basic flow in Vivado and contains the mandatory steps to be able to build a design. It is designed to provide a good balance betwwen runtime and Quality of Results (QOR).
+  * This is the basic flow in Vivado and contains the mandatory steps to be able to build a design. It is designed to provide a good balance between runtime and Quality of Results (QOR).
 
 * EXPLORE
   * This is a high-effort flow which is designed to give improved QOR results at the expense of runtime.
@@ -155,7 +152,7 @@ If you are running on one of the EC2 compute instances with 31GiB DRAM or more, 
 
 Developer RTL is encrypted using IEEE 1735 V2 encryption.  This level of encryption protects both the raw source files and the implemented design.  
 
-<a name="buildadvanced notes"></a>
+<a name="buildadvanced_notes"></a>
 ## Advanced Notes 
 
 * The included implementation flow is a baseline flow.  It is possible to add advanced commands/constraints (e.g, rejoining) to the flow.
@@ -167,9 +164,6 @@ Developer RTL is encrypted using IEEE 1735 V2 encryption.  This level of encrypt
 
 **Q: What are the different files that a developer needs to provide to AWS?**
 The developer should submit a tar file that contains the placed-and-routed DCP along with the required manifest.txt file.
-
-**Q: How do I ensure that the DCP I create will generate a good bistream at AWS?**
-The developer can enable the AWS emulation step by setting the `run_aws_emulation` argument when calling `aws_build_dcp_from_cl.sh`.
 
 **Q: What should I do my design is not meeting timing?**
 The developer should evaluate the timing path to identify a solution that may include design changes or additional constraints. Additionally, the developer can try using one of the different build strategies that may help resolve the timing violations.

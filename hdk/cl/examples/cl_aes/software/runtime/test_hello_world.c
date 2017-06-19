@@ -31,7 +31,7 @@
 #define VLED_REG_ADDR	UINT64_C(0x504)
 
 /*
- * pci_vendor_id and pci_device_id values below are Amazon's and avaliable to use for a given FPGA slot. 
+ * pci_vendor_id and pci_device_id values below are Amazon's and avaliable to use for a given FPGA slot.
  * Users may replace these with their own if allocated to them by PCI SIG
  */
 static uint16_t pci_vendor_id = 0x1D0F; /* Amazon PCI Vendor ID */
@@ -65,10 +65,10 @@ int main(int argc, char **argv) {
 
     rc = check_afi_ready(slot_id);
     fail_on(rc, out, "AFI not ready");
-    
+
     /* Accessing the CL registers via AppPF BAR0, which maps to sh_cl_ocl_ AXI-Lite bus between AWS FPGA Shell and the CL*/
 
-    printf("===== Starting with peek_poke_example =====\n");	
+    printf("===== Starting with peek_poke_example =====\n");
     rc = peek_poke_example(slot_id, FPGA_APP_PF, APP_PF_BAR0);
     fail_on(rc, out, "peek-poke example failed");
 
@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
     printf("Developers are encourged to modify the Virtual DIP Switch by calling the linux shell command to demonstrate how AWS FPGA Virtual DIP switches can be used to change a CustomLogic functionality:\n");
     printf("$ fpga-set-virtual-dip-switch -S (slot-id) -D (16 digit setting)\n\n");
     printf("In this example, setting a virtual DIP switch to zero clears the corresponding LED, even if the peek-poke example would set it to 1.\nFor instance:\n");
-     
+
     printf(
         "# fpga-set-virtual-dip-switch -S 0 -D 1111111111111111\n"
         "# fpga-get-virtual-led  -S 0\n"
@@ -88,10 +88,10 @@ int main(int argc, char **argv) {
         "0000-0000-0000-0000\n"
     );
 
-  
+
     return rc;
-    
-   
+
+
 out:
     return 1;
 }
@@ -152,7 +152,7 @@ out:
  */
 
 int check_afi_ready(int slot_id) {
-    struct fpga_mgmt_image_info info = {0}; 
+    struct fpga_mgmt_image_info info = {0};
     int rc;
 
     /* get local image description, contains status, vendor id, and device id. */
@@ -193,7 +193,7 @@ int check_afi_ready(int slot_id) {
                              "the expected values.");
         }
     }
-    
+
     return rc;
 
 out:
