@@ -754,7 +754,7 @@ cl_vio CL_VIO (
 `endif //  `ifndef DISABLE_VJTAG_DEBUG
 
 //----------------------------------------- 
-// Virtual JATG ILA Debug core example 
+// Virtual JTAG ILA Debug core example 
 //-----------------------------------------
 
 // Temporal workaround until these signals removed from the shell
