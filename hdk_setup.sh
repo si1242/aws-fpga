@@ -32,6 +32,7 @@ debug=0
 # This function checks if an environment module exists
 # Returns 0 if it exists, and returns 1 if it doesn't
 function does_module_exist() {
+<<<<<<< HEAD
         output=`/usr/bin/ls /usr/local/Modules/$MODULE_VERSION/modulefiles | grep $1`
         if [[ $output == "$1" ]]; then
                 return 0;
@@ -40,6 +41,19 @@ function does_module_exist() {
         fi
 }
 
+=======
+
+    output=`/usr/bin/ls /usr/local/Modules/$MODULE_VERSION/modulefiles | grep $1`
+
+    if [[ $output == "$1" ]]; then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+
+>>>>>>> b1bb4d768f6be3abc61908cdded6291ca5f9d93e
 function info_msg {
   echo -e "INFO: $1"
 }
@@ -109,6 +123,7 @@ fi
 
 debug_msg "Checking for Vivado install:"
 
+<<<<<<< HEAD
 # On the FPGA Developer AMI use module load to use the correct version of Vivado
 if [ -e /usr/local/Modules/$MODULE_VERSION/bin/modulecmd ]; then
   # Module command is installed.
@@ -131,6 +146,8 @@ if [ -e /usr/local/Modules/$MODULE_VERSION/bin/modulecmd ]; then
 
 fi
 
+=======
+>>>>>>> b1bb4d768f6be3abc61908cdded6291ca5f9d93e
 # before going too far make sure Vivado is available
 if ! vivado -version > /dev/null 2>&1; then
     err_msg "Please install/enable Vivado."
