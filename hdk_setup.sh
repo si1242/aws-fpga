@@ -32,16 +32,6 @@ debug=0
 # This function checks if an environment module exists
 # Returns 0 if it exists, and returns 1 if it doesn't
 function does_module_exist() {
-<<<<<<< HEAD
-        output=`/usr/bin/ls /usr/local/Modules/$MODULE_VERSION/modulefiles | grep $1`
-        if [[ $output == "$1" ]]; then
-                return 0;
-        else
-                return 1;
-        fi
-}
-
-=======
 
     output=`/usr/bin/ls /usr/local/Modules/$MODULE_VERSION/modulefiles | grep $1`
 
@@ -53,7 +43,6 @@ function does_module_exist() {
 }
 
 
->>>>>>> b1bb4d768f6be3abc61908cdded6291ca5f9d93e
 function info_msg {
   echo -e "INFO: $1"
 }
@@ -123,31 +112,7 @@ fi
 
 debug_msg "Checking for Vivado install:"
 
-<<<<<<< HEAD
-# On the FPGA Developer AMI use module load to use the correct version of Vivado
-if [ -e /usr/local/Modules/$MODULE_VERSION/bin/modulecmd ]; then
-  # Module command is installed.
-  # Load and unload the modules just to make sure have the environment set correctly
 
-  # We want to make sure sdx exists before calling the unload function
-  if does_module_exist sdx; then
-    module unload sdx
-  fi
-
-  if does_module_exist vivado; then
-    # First unload and then load it back.
-    module unload vivado
-    module load vivado
-  else
-    err_msg "The modulefile to set the environment variables for Vivado does not exist!"
-    err_msg "  Please source the hdk_setup script on the correct AMI from the marketplace"
-    return 1
-  fi
-
-fi
-
-=======
->>>>>>> b1bb4d768f6be3abc61908cdded6291ca5f9d93e
 # before going too far make sure Vivado is available
 if ! vivado -version > /dev/null 2>&1; then
     err_msg "Please install/enable Vivado."
